@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Employee List</h1>
+    <ul id="employee-list">
+        {% for employee in employees %}
+        <li>{{ employee.name }} ({{ employee.position }}) <a href="{{ url_for('delete_employee', employee_id=loop.index0) }}" class="delete-link">Delete</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add an Employee</h2>
+    <form method="POST" action="{{ url_for('add_employee') }}" id="add-employee-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" required>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
